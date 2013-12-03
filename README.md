@@ -12,7 +12,7 @@ Then the script archives the session.
 
 Set up your work directory:
 
-sudo bash ./setup.sh;
+sudo bash ./setup.sh
 
 Use the spider:
 
