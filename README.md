@@ -12,6 +12,6 @@ Then the script archives the session.
 
 To use the spider:
 
-sudo bash ./setup.sh
+sudo bash ./setup.sh;
 bash ./archive-spider.sh
 
