@@ -1,11 +1,4 @@
-###############################################
-# # # # # # # # # # # # # # # # # # # # # # # #
-#                                             #
-#             Archive Spider v1.0             #
-#             ~Keegan Bowen 2013~             #
-#                                             #
-# # # # # # # # # # # # # # # # # # # # # # # #
-###############################################
+# Archive Spider v1.0 
 
 Archive Spider is a customizable web crawler that
 archives the pulled data into a tarball.
