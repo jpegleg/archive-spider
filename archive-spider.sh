@@ -30,7 +30,7 @@ echo "$URL index is now in $RUNDIR";
 echo "Starting analysis.";
 function urlextract {
 grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/*/archive-spider/*/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
-}
+};
 urlextract >> "$RUNDIR"/index-urls.out;
 echo "Index URLS:";
 cat "$RUNDIR"/index-urls.out;
@@ -68,4 +68,4 @@ fi
 echo "Archiving session."
 tar czvf "$RUNSTAMP".tar.gz "$RUNDIR"/*;
 echo "Cleaning up."
-rm -rf "$RUNDIR"
+rm -rf "$RUNDIR";
