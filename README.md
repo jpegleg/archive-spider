@@ -23,6 +23,6 @@ Then the script archives the session.
 
 To use the spider:
 
--bash ./setup.sh
--bash ./archive-spider.sh
+sudo bash ./setup.sh
+bash ./archive-spider.sh
 
