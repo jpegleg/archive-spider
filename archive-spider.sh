@@ -69,4 +69,4 @@ echo "Archiving session."
 tar czvf "$RUNSTAMP".tar.gz "$RUNDIR"/*;
 echo "Cleaning up."
 rm -rf "$RUNDIR";
-mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP"-"$URL".tar.gz;
+mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
