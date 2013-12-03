@@ -10,8 +10,11 @@ spider the links which will return a new list of links.
 You then have the option to spider those as well. 
 Then the script archives the session.
 
-To use the spider:
+Set up your work directory:
 
 sudo bash ./setup.sh;
+
+Use the spider:
+
 bash ./archive-spider.sh
 
