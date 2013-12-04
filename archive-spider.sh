@@ -30,8 +30,6 @@ echo "$URL index is now in $RUNDIR";
 echo "Starting analysis.";
 function urlextract {
 grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/"$RUNSTAMP"/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
-=======
-grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/*/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
 };
 urlextract >> "$RUNDIR"/index-urls.out;
 echo "Index URLS:";
