@@ -29,7 +29,7 @@ wget -P "$RUNDIR"/ "$URL";
 echo "$URL index is now in $RUNDIR";
 echo "Starting analysis.";
 function urlextract {
-grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/*/archive-spider/*/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
+grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/"$RUNSTAMP"/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
 };
 urlextract >> "$RUNDIR"/index-urls.out;
 echo "Index URLS:";
@@ -66,7 +66,7 @@ else
    echo "Okay, stopping."
 fi
 echo "Archiving session."
-tar czvf "$RUNSTAMP".tar.gz "$RUNDIR"/*;
+tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
 echo "Cleaning up."
 rm -rf "$RUNDIR";
 mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;

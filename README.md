@@ -18,3 +18,12 @@ Use the spider:
 
 bash ./archive-spider.sh
 
+If wget hangs on a request, you can kill off the hung wget and Archive Spider
+will continue on. 
+
+kill -9 wgetpidgoeshere
+
+You can also edit the target link files while Archive Spider is running to 
+add, delete, or correct links.
+
+vim /home/yourusernamehere/archive-spider/runnamehere/spidered-urls.out
