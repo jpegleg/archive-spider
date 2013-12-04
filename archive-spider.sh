@@ -29,11 +29,9 @@ wget -P "$RUNDIR"/ "$URL";
 echo "$URL index is now in $RUNDIR";
 echo "Starting analysis.";
 function urlextract {
-<<<<<<< HEAD
 grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/"$RUNSTAMP"/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
 =======
 grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/*/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
->>>>>>> 13c98f8e880d6587a74566925400871ede2a6af5
 };
 urlextract >> "$RUNDIR"/index-urls.out;
 echo "Index URLS:";
