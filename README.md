@@ -1,4 +1,4 @@
-# Archive Spider v1.0 
+# Archive Spider v1.1 
 
 Archive Spider is a customizable web crawler that
 archives the pulled data into a tarball.
