@@ -22,6 +22,15 @@ echo "Enter the full url please.";
 read URL
 echo "Running spider...";
 
+# Set a function to archive the session.
+function archives {
+echo "Archiving session."
+tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
+echo "Cleaning up."
+rm -rf "$RUNDIR";
+mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
+}
+
 RUNSTAMP=$(date | cut -c1-3,5-7,10,12,13,15,16,18,19,25-28)
 mkdir "$WORKDIR"/"$RUNSTAMP";
 RUNDIR="$WORKDIR"/"$RUNSTAMP";
@@ -47,6 +56,8 @@ if [[ "$SPIDERON" == "yes" ]]; then
     spiderdeeper
 else
     echo "Okay, stopping."
+    archives
+    exit 1
 fi
 echo "Starting analysis.";
 urlextract >> "$RUNDIR"/spidered-urls.out;
@@ -64,9 +75,7 @@ if [[ "$SPIDERON2" == "yes" ]]; then
     spiderdeeper2
 else
    echo "Okay, stopping."
+   archives
+   exit 1
 fi
-echo "Archiving session."
-tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
-echo "Cleaning up."
-rm -rf "$RUNDIR";
-mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
+archives;
