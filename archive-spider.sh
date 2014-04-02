@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Gather and archive web data.
 
 echo "Type the name of the spider user (your username) and hit enter."
