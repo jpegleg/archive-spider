@@ -5,17 +5,6 @@ echo "Type the name of the spider user (your username) and hit enter."
 read USER
 WORKDIR="/home/"$USER"/archive-spider"
 
-# echo "Would you like to archive this session?";
-# echo "Please type yes or no then hit enter.";
-# read OPTARCHIVE
-# if [[ "$OPTARCHIVE" == "yes" ]]; then
-#    archiveon
-# else if [["$OPTARCHIVE" == "no" ]]; then
-#    archiveoff
-# else
-#   echo "Please use yes or no."
-# fi
-
 # Now lets point the spider.
 echo "What is the point of origin for this run?";
 echo "Enter the full url please.";
@@ -24,11 +13,11 @@ echo "Running spider...";
 
 # Set a function to archive the session.
 function archives {
-echo "Archiving session."
-tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
-echo "Cleaning up."
-rm -rf "$RUNDIR";
-mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
+    echo "Archiving session."
+    tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
+    echo "Cleaning up."
+    rm -rf "$RUNDIR";
+    mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
 }
 
 RUNSTAMP=$(date | cut -c1-3,5-7,10,12,13,15,16,18,19,25-28)
