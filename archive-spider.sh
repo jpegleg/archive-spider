@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
-# Gather and archive web data.
+
+#-----------------> Interactively gather and archive web data.
+
+######################################################################
+####################-----------> Thread spiders by user.##############
 
 echo "Type the name of the spider user (your username) and hit enter."
+
 read USER
 WORKDIR="/home/"$USER"/archive-spider"
 
@@ -19,21 +24,29 @@ function archives {
     rm -rf "$RUNDIR";
     mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
 }
-
+# Non-elegant timestamp... don't ask. 
 RUNSTAMP=$(date | cut -c1-3,5-7,10,12,13,15,16,18,19,25-28)
 mkdir "$WORKDIR"/"$RUNSTAMP";
 RUNDIR="$WORKDIR"/"$RUNSTAMP";
+
+# This spider-scrapper uses wget to fetch data.
 wget -P "$RUNDIR"/ "$URL";
+
 echo "$URL index is now in $RUNDIR";
 echo "Starting analysis.";
+
+# This is a regrex that grabs strings that look like urls via href attributes.
 function urlextract {
 grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/"$RUNSTAMP"/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
 };
+# Pull out the urls and dump them to a file.
 urlextract >> "$RUNDIR"/index-urls.out;
+
 echo "Index URLS:";
 cat "$RUNDIR"/index-urls.out;
 echo "Shall we spider the links?"
 echo "Type yes or no and hit enter please.";
+# Loop through the extracted urls, this is where it gets most interesting.
 read SPIDERON
 function spiderdeeper {
     while read z; do
@@ -48,11 +61,16 @@ else
     archives
     exit 1
 fi
+
+# To keep things under control, we have a limited
+# step loop with a user prompt. Now we ask for
+# further spidering then loop through the data again.
 echo "Starting analysis.";
 urlextract >> "$RUNDIR"/spidered-urls.out;
 cat "$RUNDIR"/spidered-urls.out;
 echo "Would you like to spider deeper?"
 echo "Please enter yes or no."
+
 read SPIDERON2
 function spiderdeeper2 {
 while read z; do
@@ -60,6 +78,14 @@ while read z; do
         echo "$z";
     done<"$RUNDIR"/spidered-urls.out;
 };
+
+# After this we stop for the run. This is enough
+# for the purposes of this script. You can easily
+# expand the depth of the run by duplicating
+# the segment above and write a spiderdeeper3 or
+# simply by running further instances of spiderdeeper
+# and spiderdeeper2 as you can imagine.
+
 if [[ "$SPIDERON2" == "yes" ]]; then
     spiderdeeper2
 else
@@ -67,4 +93,5 @@ else
    archives
    exit 1
 fi
+
 archives;
