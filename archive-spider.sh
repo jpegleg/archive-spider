@@ -5,10 +5,7 @@
 ######################################################################
 ####################-----------> Thread spiders by user.##############
 
-echo "Type the name of the spider user (your username) and hit enter."
-
-read USER
-WORKDIR="/home/"$USER"/archive-spider"
+WORKDIR="$HOME/archive-spider"
 
 # Now lets point the spider.
 echo "What is the point of origin for this run?";
