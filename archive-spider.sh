@@ -22,7 +22,7 @@ function archives {
     mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
 }
 # Non-elegant timestamp... don't ask. 
-RUNSTAMP=$(date | cut -c1-3,5-7,10,12,13,15,16,18,19,25-28)
+RUNSTAMP=$(date "+%d%B%Y%H%M%S")
 mkdir "$WORKDIR"/"$RUNSTAMP";
 RUNDIR="$WORKDIR"/"$RUNSTAMP";
 
