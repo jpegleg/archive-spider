@@ -15,11 +15,11 @@ echo "Running spider...";
 
 # Set a function to archive the session.
 function archives {
-    echo "Archiving session."
-    tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
-    echo "Cleaning up."
-    rm -rf "$RUNDIR";
-    mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
+  echo "Archiving session."
+  tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
+  echo "Cleaning up."
+  rm -rf "$RUNDIR";
+  mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
 }
 # Non-elegant timestamp... don't ask. 
 RUNSTAMP=$(date "+%d%B%Y%H%M%S")
@@ -34,7 +34,7 @@ echo "Starting analysis.";
 
 # This is a regrex that grabs strings that look like urls via href attributes.
 function urlextract {
-grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/"$RUNSTAMP"/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
+  grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/"$RUNSTAMP"/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
 };
 # Pull out the urls and dump them to a file.
 urlextract >> "$RUNDIR"/index-urls.out;
@@ -46,17 +46,17 @@ echo "Type yes or no and hit enter please.";
 # Loop through the extracted urls, this is where it gets most interesting.
 read SPIDERON
 function spiderdeeper {
-    while read z; do
-        wget -P "$RUNDIR"/ "$z";
-        echo "$z";
-    done<"$RUNDIR"/index-urls.out;
+ while read z; do
+  wget -P "$RUNDIR"/ "$z";
+  echo "$z";
+  done<"$RUNDIR"/index-urls.out;
 };
 if [[ "$SPIDERON" == "yes" ]]; then
-    spiderdeeper
+  spiderdeeper
 else
-    echo "Okay, stopping."
-    archives
-    exit 1
+  echo "Okay, stopping."
+  archives
+  exit 1
 fi
 
 # To keep things under control, we have a limited
@@ -71,9 +71,9 @@ echo "Please enter yes or no."
 read SPIDERON2
 function spiderdeeper2 {
 while read z; do
-        wget -P "$RUNDIR"/ "$z";
-        echo "$z";
-    done<"$RUNDIR"/spidered-urls.out;
+  wget -P "$RUNDIR"/ "$z";
+  echo "$z";
+  done<"$RUNDIR"/spidered-urls.out;
 };
 
 # After this we stop for the run. This is enough
@@ -84,11 +84,11 @@ while read z; do
 # and spiderdeeper2 as you can imagine.
 
 if [[ "$SPIDERON2" == "yes" ]]; then
-    spiderdeeper2
+ spiderdeeper2
 else
-   echo "Okay, stopping."
-   archives
-   exit 1
+ echo "Okay, stopping."
+ archives
+ exit 1
 fi
 
 archives;
