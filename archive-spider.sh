@@ -46,9 +46,9 @@ echo "Type yes or no and hit enter please.";
 # Loop through the extracted urls, this is where it gets most interesting.
 read SPIDERON
 function spiderdeeper {
- while read z; do
-  wget -P "$RUNDIR"/ "$z";
-  echo "$z";
+  while read z; do
+    wget -P "$RUNDIR"/ "$z";
+    echo "$z";
   done<"$RUNDIR"/index-urls.out;
 };
 if [[ "$SPIDERON" == "yes" ]]; then
@@ -57,7 +57,7 @@ else
   echo "Okay, stopping."
   archives
   exit 1
-fi
+  fi
 
 # To keep things under control, we have a limited
 # step loop with a user prompt. Now we ask for
@@ -84,11 +84,11 @@ while read z; do
 # and spiderdeeper2 as you can imagine.
 
 if [[ "$SPIDERON2" == "yes" ]]; then
- spiderdeeper2
+  spiderdeeper2
 else
- echo "Okay, stopping."
- archives
- exit 1
+  echo "Okay, stopping."
+  archives
+  exit 1
 fi
 
 archives;
