@@ -19,7 +19,7 @@ function archives {
   tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
   echo "Cleaning up."
   rm -rf "$RUNDIR";
-  mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".$(echo $URL | grep -ioP "(\w+) | head -n 1 ).tar.gz;
+  mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".$(echo $URL | grep -ioP "(\w+)" | head -n 1 ).tar.gz;
 }
 # Non-elegant timestamp... don't ask. 
 RUNSTAMP=$(date "+%m-%d-%Y-%H%M-%S")
