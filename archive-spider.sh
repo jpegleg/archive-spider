@@ -19,10 +19,10 @@ function archives {
   tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
   echo "Cleaning up."
   rm -rf "$RUNDIR";
-  mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".tar.gz;
+  mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP"."$URL".tar.gz;
 }
 # Non-elegant timestamp... don't ask. 
-RUNSTAMP=$(date "+%d%B%Y%H%M%S")
+RUNSTAMP=$(date "+%d-%Y-%H-%M-%S")
 mkdir "$WORKDIR"/"$RUNSTAMP";
 RUNDIR="$WORKDIR"/"$RUNSTAMP";
 
