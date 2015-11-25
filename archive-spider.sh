@@ -34,9 +34,10 @@ echo "Starting analysis.";
 
 # This is a regrex that grabs strings that look like urls via href attributes.
 function urlextract {
-  for link in $(ls /home/"$USER"/archive-spider/"$RUNSTAMP"/) ; do 
-    cp "$link" $WORKDIR/tmp/index.html
-    /usr/local/scripts/netstew.py 
+  for link in $(ls $RUNDIR/* ) ; do
+    cp "$link" /home/$USER/archive-spider/tmp/index.html
+    cd /home/$USER/archive-spider/tmp/
+    /usr/local/scripts/netstew.py
   done
 };
 # Pull out the urls and dump them to a file.
