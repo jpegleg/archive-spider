@@ -6,7 +6,7 @@ mkdir /home/"$SETUPUSER"/archive-spider
 mkdir /home/"$SETUPUSER"/tmp
 
 echo "Now installing netstew.py to /usr/local/scripts"
-mkdir -P /usr/local/scripts
+mkdir -p /usr/local/scripts
 cp ./netstew.py /usr/local/scripts/netstew.py
 
 echo "Now installing archive-spider to /usr/local/bin/archive-spider"
