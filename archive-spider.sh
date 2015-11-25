@@ -34,7 +34,10 @@ echo "Starting analysis.";
 
 # This is a regrex that grabs strings that look like urls via href attributes.
 function urlextract {
-  grep -io '<a href=['"'"'"][^"'"'"']*['"'"'"]' /home/"$USER"/archive-spider/"$RUNSTAMP"/* |  sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'| cut -d ":" -f2-99 | cut -d "\"" -f2 | sort -u;
+  for link in $(ls /home/"$USER"/archive-spider/"$RUNSTAMP"/) ; do 
+    cp "$link" $WORKDIR/tmp/index.html
+    /usr/local/scripts/netstew.py 
+  done
 };
 # Pull out the urls and dump them to a file.
 urlextract >> "$RUNDIR"/index-urls.out;
