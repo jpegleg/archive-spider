@@ -23,6 +23,9 @@ for link in soup.find_all('a'):
 
 #################################################
 
+Link to git repo of netstew.py:
+https://github.com/jpegleg/netstew
+
 Archive Spider 1.2 itterates through the web content with the above and downloads those links, then itterates through the those links. It is not set to go infinite, nobody wants that. Instead it has a max 3 depth, controlled interactively.
 
 Alright, lets get things setup. Get your BeautifulSoup installed where your /usr/local/scripts/netstew.py can find it.
