@@ -14,7 +14,7 @@ read URL
 echo "Running spider...";
 
 # Set a function to archive the session.
-function archives {
+archives() {
   echo "Archiving session."
   tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
   echo "Cleaning up."
@@ -33,7 +33,7 @@ echo "$URL index is now in $RUNDIR";
 echo "Starting analysis.";
 
 # This is a regrex that grabs strings that look like urls via href attributes.
-function urlextract {
+urlextract() {
   for link in $(ls $RUNDIR/* ) ; do
     cp "$link" /home/$USER/archive-spider/tmp/index.html
     cd /home/$USER/archive-spider/tmp/
@@ -49,7 +49,7 @@ echo "Shall we spider the links?"
 echo "Type yes or no and hit enter please.";
 # Loop through the extracted urls, this is where it gets most interesting.
 read SPIDERON
-function spiderdeeper {
+spiderdeeper() {
   while read z; do
     wget -P "$RUNDIR"/ "$z";
     echo "$z";
@@ -73,7 +73,7 @@ echo "Would you like to spider deeper?"
 echo "Please enter yes or no."
 
 read SPIDERON2
-function spiderdeeper2 {
+spiderdeeper2() {
 while read z; do
   wget -P "$RUNDIR"/ "$z";
   echo "$z";
