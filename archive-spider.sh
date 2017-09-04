@@ -32,7 +32,8 @@ wget -P "$RUNDIR"/ "$URL";
 echo "$URL index is now in $RUNDIR";
 echo "Starting analysis.";
 
-# This is a regrex that grabs strings that look like urls via href attributes.
+# This is a sequential iteration though files using a regex
+# that grabs strings that look like urls, via href attributes.
 urlextract() {
   for link in $(ls $RUNDIR/* ) ; do
     cp "$link" /home/$USER/archive-spider/tmp/index.html
