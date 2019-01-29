@@ -10,5 +10,5 @@ mkdir -p /usr/local/scripts
 cp ./netstew.py /usr/local/scripts/netstew.py
 
 echo "Now installing archive-spider to /usr/local/bin/archive-spider"
-cp ./archive-spider.sh /usr/local/bin/
+cp ./archive-spider.sh /usr/local/bin/archive-spider
 chmod +x /usr/local/bin/archive-spider
