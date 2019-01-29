@@ -2,8 +2,7 @@
 echo "What is your username?";
 read SETUPUSER
 
-mkdir /home/"$SETUPUSER"/archive-spider
-mkdir /home/"$SETUPUSER"/tmp
+mkdir -p /home/"$SETUPUSER"/archive-spider/tmp
 
 echo "Now installing netstew.py to /usr/local/scripts"
 mkdir -p /usr/local/scripts
