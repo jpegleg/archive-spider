@@ -8,12 +8,14 @@
 WORKDIR="$HOME/archive-spider"
 
 # Now lets point the spider.
+
 echo "What is the point of origin for this run?";
 echo "Enter the full url please.";
 read URL
 echo "Running spider...";
 
 # Set a function to archive the session.
+
 archives() {
   echo "Archiving session."
   tar czvf "$RUNSTAMP".tar.gz "$RUNDIR";
@@ -21,12 +23,15 @@ archives() {
   rm -rf "$RUNDIR";
   mv "$RUNSTAMP".tar.gz "$WORKDIR"/"$RUNSTAMP".$(echo $URL | tr -cd '[[:alnum:]]._-').tar.gz;
 }
+
 # Non-elegant timestamp... don't ask. 
+
 RUNSTAMP=$(date "+%m-%d-%Y-%H%M-%S")
 mkdir "$WORKDIR"/"$RUNSTAMP";
 RUNDIR="$WORKDIR"/"$RUNSTAMP";
 
 # This spider-scrapper uses wget to fetch data.
+
 wget -P "$RUNDIR"/ "$URL";
 
 echo "$URL index is now in $RUNDIR";
@@ -34,6 +39,7 @@ echo "Starting analysis.";
 
 # This is a sequential iteration though files using a regex
 # that grabs strings that look like urls, via href attributes.
+
 urlextract() {
   for link in $(ls $RUNDIR/* ) ; do
     cp "$link" /home/$USER/archive-spider/tmp/index.html
@@ -41,14 +47,18 @@ urlextract() {
     /usr/local/scripts/netstew.py
   done
 };
+
 # Pull out the urls and dump them to a file.
+
 urlextract >> "$RUNDIR"/index-urls.out;
 
 echo "Index URLS:";
 cat "$RUNDIR"/index-urls.out;
 echo "Shall we spider the links?"
 echo "Type yes or no and hit enter please.";
+
 # Loop through the extracted urls, this is where it gets most interesting.
+
 read SPIDERON
 spiderdeeper() {
   while read z; do
@@ -56,13 +66,14 @@ spiderdeeper() {
     echo "$z";
   done<"$RUNDIR"/index-urls.out;
 };
+
 if [[ "$SPIDERON" == "yes" ]]; then
   spiderdeeper
 else
   echo "Okay, stopping."
   archives
   exit 1
-  fi
+fi
 
 # To keep things under control, we have a limited
 # step loop with a user prompt. Now we ask for
