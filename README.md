@@ -26,7 +26,7 @@ for link in soup.find_all('a'):
 Link to git repo of netstew.py:
 https://github.com/jpegleg/netstew
 
-Archive Spider 1.2 itterates through the web content with the above and downloads those links, then itterates through the those links. It is not set to go infinite, nobody wants that. Instead it has a max 3 depth, controlled interactively.
+Archive Spider 1.2 iterates through the web content with the above and downloads those links, then iterates through the those links. It is not set to go infinite, nobody wants that. Instead it has a max 3 depth, controlled interactively.
 
 Alright, lets get things setup. Get your BeautifulSoup installed where your /usr/local/scripts/netstew.py can find it.
 Then place your files, including the netstew.py you want to deploy in your pwd and set up your work directory:
