@@ -21,12 +21,8 @@ recurse () {
     secondex=$(grep -o "Index of.*" "$deeper" | cut -d'<' -f1 | cut -d' ' -f3 | head -n1)
     grep -o href..* "$deeper" | cut -d '"' -f2 > ticker.index
     cat ticker.index | while read line; do
-      if [ "$line" = "$secondex" ]; then
-        echo "not pulling duplicate URI!"
-      else
         echo "$globtick"/"$secondex"/"$line"
         wget --limit-rate=800k "$globtick"/"$secondex"/"$line"
-      fi
     done
   done
 }
