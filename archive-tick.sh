@@ -32,6 +32,7 @@ cd tick-workspace
 tick $1
 export globtick=$(echo $1 | cut -d'/' -f1-3)
 mv index.html original.index
-recurse
+recurse # if the directories are more than two layers deep, you could add an additional recurse for each additional layer
+# although adding more instances of recurse will create file download duplication
 tar czvf archive-tick_$(date +%Y%m%d%H%M%S%N).tgz ./*
 cd ..
