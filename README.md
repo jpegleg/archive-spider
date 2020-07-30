@@ -46,3 +46,12 @@ You can also edit the target link files while Archive Spider is running to
 add, delete, or change links.
 
 vim /home/yourusernamehere/archive-spider/runnamehere/spidered-urls.out
+
+#################################################
+
+archive-tick.sh
+
+This script is for targets that have directory browsing enabled. If a site has Index of thing and you can browse the file system, archive-tick.sh can download it all!
+
+./archive-tick.sh https://someplace/somedirectorylisting/
+
